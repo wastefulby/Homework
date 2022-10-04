@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-yvq$t)o4_hkje)9yhe&am+g0oa!!re6=-ihm29c*)8yjvw!yw6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['zhukv.pythonanywhere.com']
 
 
 # Application definition
@@ -116,6 +116,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/home/zhukv/Homework/src/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

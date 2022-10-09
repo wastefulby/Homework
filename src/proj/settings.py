@@ -26,6 +26,7 @@ SECRET_KEY = local_settings.SECRET_KEY
 DEBUG = True
 
 ALLOWED_HOSTS = ['zhukv.pythonanywhere.com']
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'references_book'
 ]
 
 MIDDLEWARE = [

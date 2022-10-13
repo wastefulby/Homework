@@ -1,8 +1,15 @@
+from tabnanny import verbose
 from django.contrib import admin
 
-from references.models import ReferencesGenre, ReferencesCurrenсy
+from . import models
 
 # Register your models here.
 
-admin.site.register(ReferencesGenre)
-admin.site.register(ReferencesCurrenсy)
+class ReferencesGenreAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+
+class ReferencesCurrenсyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+
+admin.site.register(models.ReferencesGenre, ReferencesGenreAdmin)
+admin.site.register(models.ReferencesCurrenсy, ReferencesCurrenсyAdmin)

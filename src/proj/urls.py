@@ -16,6 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from homepage.views import index
+from references.views import create, delete, update, genre_list, show_references
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index),
+    path('references/', show_references),
+    path('create/', create),
+    path('update/<int:pk>/', update),
+    path('references/list/', genre_list),
+    path('delete/<int:pk>/', delete)
 ]

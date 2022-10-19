@@ -7,22 +7,19 @@
     <title>Страница редактирования</title>
 </head>
 <body>
+    <h1>Редактирование</h1>
 
     <form method="POST">
        {% csrf_token %}
        <p>
-            <a href=" /references/list/?name={{name}}">Список</a>
-       </p>
-       <p>
             <label>Введите название</label><br>
-            <input type="text" name="name" value="{{objects.name}}" />
+            <input type="text" name="name" value="{{object.name}}" />
        </p>
        <p>
             <label>Введите описание</label><br>
-            <input type="text" name="description" value="{{objects.description}}" />
-            <input type="hidden" name="url" value="{{name}}">
+            <input type="text" name="description" value="{{object.description}}" />
         </p>
-        <input type="submit" value="Сохранить" ><button><a href=" /references/list/?name={{name}}">Назад</a></button>
+        <input type="submit" value="Сохранить" ><button><a href="/currenсy/list_c/">Назад</a></button>
     </form>
        
 </body>

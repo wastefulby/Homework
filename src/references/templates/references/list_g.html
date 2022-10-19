@@ -8,21 +8,21 @@
 </head>
 <body>
     <h1>Список {{ name }}</h1>
-    <button><a href=" /references/">Выбор справочника</a></button>
+    <button><a href="/">Выбор справочника</a></button>
     <br>
     <br>
-    <button><a href=" /create/?name={{name}}">Добваить</a></button>
+    <button><a href="/genre/create_g/">Добваить</a></button>
     <br>
     <br>
-    
+    {{ object_list.table }}
     <table>
         <thead><th>Id</th><th>Имя</th><th>Описание</th><th></th></thead>
-        {% for obj in objects %}
+        {% for obj in object_list %}
         <tr>
-            <td><button><a href=" /update/{{obj.pk}}/?name={{name}}">({{ obj.pk }}) Редактировать</a></button></td>
-            <td>{{ obj.name }}</td>
+            <td><button><a href="/genre/update_g/{{obj.pk}}/">({{ obj.pk }}) Редактировать</a></button></td>
+            <td><a href="/genre/detail_g/{{obj.pk}}/">{{ obj.name }}</a></td>
             <td>{{ obj.description }}</td>
-            <td><button><a href=" /delete/{{obj.pk}}/?name={{name}}">Удалить</a></button></td>
+            <td><button><a href="/genre/delete_g/{{obj.pk}}/">Удалить</a></button></td>
         </tr>
         {% endfor %}
     </table>

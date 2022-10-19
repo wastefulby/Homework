@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница создания</title>
+    <title>Страница редактирования</title>
 </head>
 <body>
-    <h2>Добавление {{ name }}</h2>
+    <h1>Редактирование</h1>
 
     <form method="POST">
        {% csrf_token %}
        <p>
             <label>Введите название</label><br>
-            <input type="text" name="name" value="" />
+            <input type="text" name="name" value="{{object.name}}" />
        </p>
        <p>
             <label>Введите описание</label><br>
-            <input type="text" name="description" value="" />
-            <input type="hidden" name="url" value="{{name}}">
+            <input type="text" name="description" value="{{object.description}}" />
         </p>
-        <input type="submit" value="Сохранить" ><button><a href=" /references/list/?name={{name}}">Назад</a></button>
+        <input type="submit" value="Сохранить" ><button><a href="/genre/list_g/">Назад</a></button>
     </form>
        
 </body>

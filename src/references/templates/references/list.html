@@ -10,7 +10,7 @@
     <a class="btn btn-primary" href="/" role="button">Выбор справочника</a>
     <br>
     <br>
-    <a class="btn btn-primary" href="{% url 'references:create-genre' %}" role="button">Добваить</a>
+    <a class="btn btn-primary" href="{% url ref_create %}" role="button">Добваить</a>
     <br>
     <br>
     <table class="table table-hover table-sm">
@@ -18,10 +18,10 @@
         {% for obj in object_list %}
         
         <tr>
-            <td><a class="btn btn-outline-secondary" href="{% url 'references:update-genre' pk=obj.pk %}" role="button">({{ obj.pk }}) Редактировать</a></td>
-            <td><a href="{% url 'references:detail-genre' pk=obj.pk %}">{{ obj.name }}</a></td>
+            <td><a class="btn btn-outline-secondary" href="{% url ref_update pk=obj.pk %}" role="button">({{ obj.pk }}) Редактировать</a></td>
+            <td><a href="{% url ref_detail pk=obj.pk %}">{{ obj.name }}</a></td>
             <td>{{ obj.description }}</td>
-            <td><a class="btn btn-outline-danger" href="{% url 'references:delete-genre' pk=obj.pk %}" role="button">Удалить</a></td>
+            <td><a class="btn btn-outline-danger" href="{% url ref_delete pk=obj.pk %}" role="button">Удалить</a></td>
         </tr>
         {% endfor %}
     </table>

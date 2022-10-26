@@ -12,10 +12,13 @@ class DetailReferencesAuthor(generic.DetailView):
 
 class ListReferencesAuthor(generic.ListView):
     model = models.ReferencesAuthor
-    template_name = 'references/list-author.html'
+    template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['ref_name'] = 'author'
+        context['ref_create'] = 'references:create-author'
+        context['ref_update'] = 'references:update-author'
+        context['ref_detail'] = 'references:detail-author'
+        context['ref_delete'] = 'references:delete-author'
         return context
 
 class CreateReferencesAuthor(generic.CreateView):
@@ -40,10 +43,13 @@ class DetailReferencesGenre(generic.DetailView):
 
 class ListReferencesGenre(generic.ListView):
     model = models.ReferencesGenre
-    template_name = 'references/list-genre.html'
+    template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['ref_name'] = 'author'
+        context['ref_create'] = 'references:create-genre'
+        context['ref_update'] = 'references:update-genre'
+        context['ref_detail'] = 'references:detail-genre'
+        context['ref_delete'] = 'references:delete-genre'
         return context
 
 class CreateReferencesGenre(generic.CreateView):
@@ -68,10 +74,13 @@ class DetailReferencesCurrenсy(generic.DetailView):
 
 class ListReferencesCurrenсy(generic.ListView):
     model = models.ReferencesCurrenсy
-    template_name = 'references/list-currenсy.html'
+    template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['ref_name'] = 'currenсy'
+        context['ref_create'] = 'references:create-currenсy'
+        context['ref_update'] = 'references:update-currenсy'
+        context['ref_detail'] = 'references:detail-currenсy'
+        context['ref_delete'] = 'references:delete-currenсy'
         return context
 
 class CreateReferencesCurrenсy(generic.CreateView):

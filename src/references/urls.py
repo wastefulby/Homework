@@ -5,9 +5,9 @@ from . import views
 app_name = "references"
 
 urlpatterns = [
-    path('list-author', views.ListReferencesAuthor.as_view(), name='list-author'),
-    path('list-genre', views.ListReferencesGenre.as_view(), name='list-genre'),
-    path('list-currenсy', views.ListReferencesCurrenсy.as_view(), name='list-currenсy'),
+    path('list/author', views.ListReferencesAuthor.as_view(), name='list-author'),
+    path('list/genre', views.ListReferencesGenre.as_view(), name='list-genre'),
+    path('list/currenсy', views.ListReferencesCurrenсy.as_view(), name='list-currenсy'),
 
     path('detail/author/<int:pk>/', views.DetailReferencesAuthor.as_view(), name='detail-author'),
     path('detail/genre/<int:pk>/', views.DetailReferencesGenre.as_view(), name='detail-genre'),

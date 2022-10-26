@@ -14,30 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from homepage.views import index
-from references import views as ref_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    #Author
-    path('author/detail_a/<int:pk>/', ref_views.DetailReferencesAuthor.as_view()),
-    path('author/create_a/', ref_views.CreateReferencesAuthor.as_view()),
-    path('author/update_a/<int:pk>/', ref_views.UpdateReferencesAuthor.as_view()),
-    path('author/list_a/', ref_views.ListReferencesAuthor.as_view()),
-    path('author/delete_a/<int:pk>/', ref_views.DeleteReferencesAuthor.as_view()),
-    #Genre
-    path('genre/detail_g/<int:pk>/', ref_views.DetailReferencesGenre.as_view()),
-    path('genre/create_g/', ref_views.CreateReferencesGenre.as_view()),
-    path('genre/update_g/<int:pk>/', ref_views.UpdateReferencesGenre.as_view()),
-    path('genre/list_g/', ref_views.ListReferencesGenre.as_view()),
-    path('genre/delete_g/<int:pk>/', ref_views.DeleteReferencesGenre.as_view()),
-    #Currenсy
-    path('currenсy/detail_c/<int:pk>/', ref_views.DetailReferencesCurrenсy.as_view()),
-    path('currenсy/create_c/', ref_views.CreateReferencesCurrenсy.as_view()),
-    path('currenсy/update_c/<int:pk>/', ref_views.UpdateReferencesCurrenсy.as_view()),
-    path('currenсy/list_c/', ref_views.ListReferencesCurrenсy.as_view()),
-    path('currenсy/delete_c/<int:pk>/', ref_views.DeleteReferencesCurrenсy.as_view())
+    path('refs/', include('references.urls', namespace="references"))
 ]

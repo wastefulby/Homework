@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-</head>
-<body>
-    
-    <h1>Главная страница</h1>
-    <button><a href="/author/list_a/">Справочник авторов</a></button><br>
-    <button><a href="/genre/list_g/">Справочник жанров</a></button><br>
-    <button><a href="/currenсy/list_c/">Справочник валют</a></button>
-               
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+Главная страница
+{% endblock title %}
+
+{% block body %}
+<h1 align="center">Справочники</h1>
+<div class="row justify-content-md-center">
+<div class="col-md-auto">
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a type="button" href="refs/list-author" class="btn btn-outline-secondary" role="button">Авторов</a>
+    <a type="button" href="refs/list-genre" class="btn btn-outline-secondary" role="button">Жанров</a>
+    <a type="button" href="refs/list-currenсy" class="btn btn-outline-secondary" role="button">Валют</a>
+</div>
+</div>
+</div>
+{% endblock body %}
+
+{% block footer %}
+
+{% endblock footer %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 
 # Create your models here.
 
@@ -17,7 +18,8 @@ class ReferencesAuthor(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f'/author/list_a/'
+        #return f'/list/author'
+        return reverse_lazy('references:list-author')
 
     # def success_url(self):
     #     return f'/list/'
@@ -37,7 +39,8 @@ class ReferencesGenre(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f'/genre/list_g/'
+        #return f'/list/genre'
+        return reverse_lazy('references:list-genre')
 
     # def success_url(self):
     #     return f'/list/'
@@ -57,7 +60,8 @@ class ReferencesCurrenсy(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f'/currenсy/list_c/'
+        #return f'/list/currenсy'
+        return reverse_lazy('references:list-currenсy')
 
     # def success_url(self):
     #     return f'/list/'

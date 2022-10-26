@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Страница удаления
+{% endblock title %}
+
+{% block body %}
+<h1>Удаление</h1>
+
+    <b>PK:</b> {{ object.pk }}<br>
+    <b>Name:</b> {{ object.name }}
+
+    <form method="POST">
+       {% csrf_token %}
+       <div class="btn-group" role="group" aria-label="Basic example">
+       <input class="btn btn-outline-danger" type="submit" value="Удалить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+       </div>
+    </form>
+
+{% endblock body %}
+
+{% block footer %}
+Страница удаления
+{% endblock footer %}

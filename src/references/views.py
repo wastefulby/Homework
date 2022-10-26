@@ -1,79 +1,90 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from django.views import generic
+from django.urls import reverse_lazy
 from . import models
 from . import forms
 
 # Create your views here.
 
-#Genre
-class DetailReferencesGenre(generic.DetailView):
-    model = models.ReferencesGenre
-    template_name = 'references/detail_g.html'
-
-class ListReferencesGenre(generic.ListView):
-    model = models.ReferencesGenre
-    template_name = 'references/list_g.html'
-
-class CreateReferencesGenre(generic.CreateView):
-    model = models.ReferencesGenre
-    form_class = forms.ReferencesGenreForm
-    template_name = 'references/create_g.html'
-
-class UpdateReferencesGenre(generic.UpdateView):
-    model = models.ReferencesGenre
-    form_class = forms.ReferencesGenreForm
-    template_name = 'references/update_g.html'
-
-class DeleteReferencesGenre(generic.DeleteView):
-    model = models.ReferencesGenre
-    template_name = 'references/delete_g.html'
-    success_url = '/genre/list_g/'
-
 #Author
 class DetailReferencesAuthor(generic.DetailView):
     model = models.ReferencesAuthor
-    template_name = 'references/detail_a.html'
+    template_name = 'references/detail.html'
 
 class ListReferencesAuthor(generic.ListView):
     model = models.ReferencesAuthor
-    template_name = 'references/list_a.html'
+    template_name = 'references/list-author.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['ref_name'] = 'author'
+        return context
 
 class CreateReferencesAuthor(generic.CreateView):
     model = models.ReferencesAuthor
     form_class = forms.ReferencesAuthorForm
-    template_name = 'references/create_a.html'
+    template_name = 'references/edit.html'
 
 class UpdateReferencesAuthor(generic.UpdateView):
     model = models.ReferencesAuthor
     form_class = forms.ReferencesAuthorForm
-    template_name = 'references/update_a.html'
+    template_name = 'references/edit.html'
 
 class DeleteReferencesAuthor(generic.DeleteView):
     model = models.ReferencesAuthor
-    template_name = 'references/delete_a.html'
-    success_url = '/author/list_a/'
+    template_name = 'references/delete.html'
+    success_url = reverse_lazy('references:list-author')
+
+#Genre
+class DetailReferencesGenre(generic.DetailView):
+    model = models.ReferencesGenre
+    template_name = 'references/detail.html'
+
+class ListReferencesGenre(generic.ListView):
+    model = models.ReferencesGenre
+    template_name = 'references/list-genre.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['ref_name'] = 'genre'
+        return context
+
+class CreateReferencesGenre(generic.CreateView):
+    model = models.ReferencesGenre
+    form_class = forms.ReferencesGenreForm
+    template_name = 'references/edit.html'
+
+class UpdateReferencesGenre(generic.UpdateView):
+    model = models.ReferencesGenre
+    form_class = forms.ReferencesGenreForm
+    template_name = 'references/edit.html'
+
+class DeleteReferencesGenre(generic.DeleteView):
+    model = models.ReferencesGenre
+    template_name = 'references/delete.html'
+    success_url = reverse_lazy('references:list-genre')
 
 #Currenсy
 class DetailReferencesCurrenсy(generic.DetailView):
     model = models.ReferencesCurrenсy
-    template_name = 'references/detail_c.html'
+    template_name = 'references/detail.html'
 
 class ListReferencesCurrenсy(generic.ListView):
     model = models.ReferencesCurrenсy
-    template_name = 'references/list_c.html'
+    template_name = 'references/list-currenсy.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['ref_name'] = 'currenсy'
+        return context
 
 class CreateReferencesCurrenсy(generic.CreateView):
     model = models.ReferencesCurrenсy
     form_class = forms.ReferencesCurrenсyForm
-    template_name = 'references/create_c.html'
+    template_name = 'references/edit.html'
 
 class UpdateReferencesCurrenсy(generic.UpdateView):
     model = models.ReferencesCurrenсy
     form_class = forms.ReferencesCurrenсyForm
-    template_name = 'references/update_c.html'
+    template_name = 'references/edit.html'
 
 class DeleteReferencesCurrenсy(generic.DeleteView):
     model = models.ReferencesCurrenсy
-    template_name = 'references/delete_c.html'
-    success_url = '/currenсy/list_c/'
+    template_name = 'references/delete.html'
+    success_url = reverse_lazy('references:list-currenсy')

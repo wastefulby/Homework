@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Страница просмотра
+{% endblock title %}
+{% block body %}
+<h1>Просмотр</h1>
+
+    <b>PK:</b> {{ object.pk }}<br>
+    <b>Name:</b> {{ object.name }}<br>
+    <b>Description:</b> {{ object.description }}<br>
+
+    <input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+
+{% endblock body %}
+
+{% block footer %}
+Страница просмотра  
+{% endblock footer %}
+    
+           

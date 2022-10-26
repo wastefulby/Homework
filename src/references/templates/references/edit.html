@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Редактирование
+{% endblock title %}
+
+{% block body %}
+<h1> {{ ref_name }} *справочник</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+             <label>Введите название</label><br>
+             <input type="text" name="name" value="{{object.name}}"/>
+        </p>
+        <p>
+             <label>Введите описание</label><br>
+             <input type="text" name="description" value="{{object.description}}"/>
+         </p>
+         <div class="btn-group" role="group" aria-label="Basic example">
+         <input class="btn btn-outline-success" type="submit" value="Сохранить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+         </div>
+     </form>
+{% endblock body %}
+
+{% block footer %}
+{{ ref_name }} *справочник 
+{% endblock footer %}

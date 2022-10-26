@@ -43,7 +43,7 @@ class ListReferencesGenre(generic.ListView):
     template_name = 'references/list-genre.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['ref_name'] = 'update-author'
+        context['ref_name'] = 'author'
         return context
 
 class CreateReferencesGenre(generic.CreateView):

@@ -18,7 +18,7 @@
         {% for obj in object_list %}
         
         <tr>
-            <td><a class="btn btn-outline-secondary" href="{% url 'references:update-author' pk=obj.pk %}" role="button">({{ obj.pk }}) Редактировать</a></td>
+            <td><a class="btn btn-outline-secondary" href="{% url 'references:{{ref_name}}' pk=obj.pk %}" role="button">({{ obj.pk }}) Редактировать</a></td>
             <td><a href="{% url 'references:detail-author' pk=obj.pk %}">{{ obj.name }}</a></td>
             <td>{{ obj.description }}</td>
             <td><a class="btn btn-outline-danger" href="{% url 'references:delete-author' pk=obj.pk %}" role="button">Удалить</a></td>

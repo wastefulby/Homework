@@ -15,6 +15,7 @@ class ListReferencesAuthor(generic.ListView):
     template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context['ref_name'] = 'author'
         context['ref_create'] = 'references:create-author'
         context['ref_update'] = 'references:update-author'
         context['ref_detail'] = 'references:detail-author'
@@ -46,6 +47,7 @@ class ListReferencesGenre(generic.ListView):
     template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context['ref_name'] = 'genre'
         context['ref_create'] = 'references:create-genre'
         context['ref_update'] = 'references:update-genre'
         context['ref_detail'] = 'references:detail-genre'
@@ -77,6 +79,7 @@ class ListReferencesCurrenсy(generic.ListView):
     template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context['ref_name'] = 'currenсy'
         context['ref_create'] = 'references:create-currenсy'
         context['ref_update'] = 'references:update-currenсy'
         context['ref_detail'] = 'references:detail-currenсy'

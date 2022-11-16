@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Редактирование
+{% endblock title %}
+
+{% block body %}
+<h1>asdasd</h1>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row row-cols-2">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="btn-group">
+                <input class="btn btn-outline-success" type="submit" value="Сохранить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% comment %} <main class="flex-shrink-0">
+    <div class="container">
+        <h1> {{ goods_name }} *справочник</h1>
+        <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Введите название</label><br>
+            <input type="text" name="name" value="{{object.name}}"/>
+        </p>
+        <p>
+            <label>Выберите автора</label><br>
+            <select class="form-select-border-width" aria-label="Default select example">
+                <option selected value="{{object.author}}">{{ object.author }}</option>
+                {% for obj in refs_author %}
+                <option value="{{object.pk}}">{{ obj.name }}</option>
+                {% comment %} {{ object.pk=obj.pk }}          
+                {% endfor %}                
+            </select>
+        </p>
+        <p>
+            <label>Выберите жанр</label><br>
+            <select class="form-select-border-width" aria-label="Default select example">
+                <option selected value="{{object.pk}}">{{ object.genre }}</option>
+                {% for obj in refs_genre %}         
+                <option value="{{obj.pk}}">{{obj.pk}} | {{ obj.name }}</option>
+                {% endfor %}                
+            </select>
+        </p>
+        <p>
+            <label>Введите стоимость</label><br>
+            <input type="text" name="price" value="{{object.price}}"/>
+        </p>
+        <p>
+            <label>Выберите валюту</label><br>
+            <select class="form-select-border-width" aria-label="Default select example">
+                <option selected value="{{object.pk}}">{{ object.currenсy }}</option>
+                {% for obj in refs_currenсy %}         
+                <option value="{{obj.pk}}">{{obj.pk}} | {{ obj.name }}</option>
+                {% endfor %}                
+            </select>
+        </p>
+        <p>
+            <label>Введите рейтинг</label><br>
+            <input type="text" name="rating" value="{{object.rating}}"/>
+        </p>
+        <p>
+            <label>Введите описание</label>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 111px">{{ object.description }}</textarea>
+            </div>
+        </p>
+        <p>
+            <label>Выберите изображение</label><br>
+            <input type="text" name="img" value=""/>
+        </p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <input class="btn btn-outline-success" type="submit" value="Сохранить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+        </div>
+        </form>
+    </div>
+</main> {% endcomment %}
+{% endblock body %}
+
+{% block footer %}
+{{ ref_name }} *справочник 
+{% endblock footer %}

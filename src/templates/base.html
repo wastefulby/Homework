@@ -20,7 +20,7 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #62a3d0">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <a class="navbar-brand" href="/">На главную страницу</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -37,22 +37,38 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
+          <input type="search" class="form-control me-2" placeholder="Search..." aria-label="Search">
         </form>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#Login">Login</button>
+        <!-- Modal -->
+        <div class="modal fade" id="Login" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginLabel">Modal Login</h1>
+              </div>
+              <div class="modal-body">
+                LOGIN login LOGIN login LOGIN login
+              </div>
+              <form action="" method="post">
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
 </header>
 
 <!-- Begin page content -->
-<main class="flex-shrink-0">
-  <div class="container">
-    {% block body %}
-    No No No
-    {% endblock body %}
-  </div>
-</main>
+{% block body %}
+No No No
+{% endblock body %}
 
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">

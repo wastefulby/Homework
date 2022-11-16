@@ -7,20 +7,19 @@
 {% block body %}
 <main class="flex-shrink-0">
     <div class="container">
-        <h1>Список {{ ref_name }}</h1>
-        <a class="btn btn-primary" href="/" role="button">Выбор справочника</a>
-        <br>
-        <br>
-        <a class="btn btn-primary" href="{% url ref_create %}" role="button">Добваить</a>
+        <h1>Список {{ goods_name }}</h1>
+        <a class="btn btn-primary" href="{% url goods_create %}" role="button">Добваить</a>
         <br>
         <br>
         <table class="table table-hover table-sm">
-            <thead><th>Id</th><th>Имя</th><th>Описание</th><th></th></thead>
+            <thead><th>Id</th><th>Название</th><th>Жанр</th><th>Автор</th><th>Описание</th><th></th></thead>
             {% for obj in object_list %}
             
             <tr>
-                <td><a class="btn btn-outline-secondary" href="{% url ref_update pk=obj.pk %}" role="button">({{ obj.pk }}) Редактировать</a></td>
-                <td><a href="{% url ref_detail pk=obj.pk %}">{{ obj.name }}</a></td>
+                <td><a class="btn btn-outline-secondary" href="{% url goods_update pk=obj.pk %}" role="button">({{ obj.pk }}) Редактировать</a></td>
+                <td><a href="{% url goods_detail pk=obj.pk %}">{{ obj.name }}</a></td>
+                <td>{{ obj.genre }}</td>
+                <td>{{ obj.author }}</td>
                 <td>{{ obj.description }}</td>
                 <!-- Button trigger modal -->
                 <td><a type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#static{{obj.pk}}">Удалить</a></td>
@@ -34,7 +33,7 @@
                             <div class="modal-body">
                                 Удалить {{ obj.name }}
                             </div>
-                            <form action="{% url ref_delete pk=obj.pk %}" method="post">
+                            <form action="{% url goods_delete pk=obj.pk %}" method="post">
                                 {% csrf_token %}
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

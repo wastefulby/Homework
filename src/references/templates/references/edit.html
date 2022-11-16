@@ -5,21 +5,25 @@
 {% endblock title %}
 
 {% block body %}
-<h1> {{ ref_name }} *справочник</h1>
-    <form method="POST">
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1> {{ ref_name }} *справочник</h1>
+        <form method="POST">
         {% csrf_token %}
         <p>
-             <label>Введите название</label><br>
-             <input type="text" name="name" value="{{object.name}}"/>
+            <label>Введите название</label><br>
+            <input type="text" name="name" value="{{object.name}}"/>
         </p>
         <p>
-             <label>Введите описание</label><br>
-             <input type="text" name="description" value="{{object.description}}"/>
-         </p>
-         <div class="btn-group" role="group" aria-label="Basic example">
-         <input class="btn btn-outline-success" type="submit" value="Сохранить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
-         </div>
+            <label>Введите описание</label><br>
+            <input type="text" name="description" value="{{object.description}}"/>
+        </p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <input class="btn btn-outline-success" type="submit" value="Сохранить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+        </div>
      </form>
+    </div>
+</main>
 {% endblock body %}
 
 {% block footer %}

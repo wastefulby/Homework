@@ -4,14 +4,15 @@
 Страница просмотра
 {% endblock title %}
 {% block body %}
-<h1>Просмотр</h1>
-
-    <b>PK:</b> {{ object.pk }}<br>
-    <b>Name:</b> {{ object.name }}<br>
-    <b>Description:</b> {{ object.description }}<br>
-
-    <input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
-
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1>Просмотр</h1>
+        <b>PK:</b> {{ object.pk }}<br>
+        <b>Name:</b> {{ object.name }}<br>
+        <b>Description:</b> {{ object.description }}<br>
+        <input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
+    </div>
+</main>
 {% endblock body %}
 
 {% block footer %}

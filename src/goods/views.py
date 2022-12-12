@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from . import models
 from . import forms
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from references.models import ReferencesAuthor, ReferencesGenre, ReferencesCurrenсy
 
@@ -11,8 +12,9 @@ class DetailGoodsBooks(generic.DetailView):
     model = models.GoodsBooks
     template_name = 'goods/detail.html'
 
-class ListGoodsBooks(generic.ListView):
+class ListGoodsBooks(PermissionRequiredMixin, generic.ListView):
     model = models.GoodsBooks
+    permission_required = 'orders.change_order'
     template_name = 'goods/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -23,9 +25,10 @@ class ListGoodsBooks(generic.ListView):
         context['goods_delete'] = 'goods:delete-books'
         return context
 
-class CreateGoodsBooks(generic.CreateView):
+class CreateGoodsBooks(PermissionRequiredMixin, generic.CreateView):
     model = models.GoodsBooks
     form_class = forms.GoodsBooksForm
+    permission_required = 'orders.change_order'
     template_name = 'goods/edit.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -36,9 +39,10 @@ class CreateGoodsBooks(generic.CreateView):
         return context
     success_url = reverse_lazy('goods:list-books')
 
-class UpdateGoodsBooks(generic.UpdateView):
+class UpdateGoodsBooks(PermissionRequiredMixin, generic.UpdateView):
     model = models.GoodsBooks
     form_class = forms.GoodsBooksForm
+    permission_required = 'orders.change_order'
     template_name = 'goods/edit.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -49,7 +53,8 @@ class UpdateGoodsBooks(generic.UpdateView):
         return context
     success_url = reverse_lazy('goods:list-books')
 
-class DeleteGoodsBooks(generic.DeleteView):
+class DeleteGoodsBooks(PermissionRequiredMixin, generic.DeleteView):
     model = models.GoodsBooks
     template_name = 'goods/delete.html'
+    permission_required = 'orders.change_order'
     success_url = reverse_lazy('goods:list-books')

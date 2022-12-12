@@ -1,5 +1,6 @@
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from . import models
 from . import forms
 
@@ -10,8 +11,9 @@ class DetailReferencesAuthor(generic.DetailView):
     model = models.ReferencesAuthor
     template_name = 'references/detail.html'
 
-class ListReferencesAuthor(generic.ListView):
+class ListReferencesAuthor(PermissionRequiredMixin, generic.ListView):
     model = models.ReferencesAuthor
+    permission_required = 'orders.change_order'
     template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -22,28 +24,33 @@ class ListReferencesAuthor(generic.ListView):
         context['ref_delete'] = 'references:delete-author'
         return context
 
-class CreateReferencesAuthor(generic.CreateView):
+class CreateReferencesAuthor(PermissionRequiredMixin, generic.CreateView):
     model = models.ReferencesAuthor
     form_class = forms.ReferencesAuthorForm
+    permission_required = 'orders.change_order'
     template_name = 'references/edit.html'
 
-class UpdateReferencesAuthor(generic.UpdateView):
+class UpdateReferencesAuthor(PermissionRequiredMixin, generic.UpdateView):
     model = models.ReferencesAuthor
     form_class = forms.ReferencesAuthorForm
+    permission_required = 'orders.change_order'
     template_name = 'references/edit.html'
 
-class DeleteReferencesAuthor(generic.DeleteView):
+class DeleteReferencesAuthor(PermissionRequiredMixin, generic.DeleteView):
     model = models.ReferencesAuthor
+    permission_required = 'orders.change_order'
     template_name = 'references/delete.html'
     success_url = reverse_lazy('references:list-author')
 
 #Genre
-class DetailReferencesGenre(generic.DetailView):
+class DetailReferencesGenre(PermissionRequiredMixin, generic.DetailView):
     model = models.ReferencesGenre
+    permission_required = 'orders.change_order'
     template_name = 'references/detail.html'
 
-class ListReferencesGenre(generic.ListView):
+class ListReferencesGenre(PermissionRequiredMixin, generic.ListView):
     model = models.ReferencesGenre
+    permission_required = 'orders.change_order'
     template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -54,28 +61,33 @@ class ListReferencesGenre(generic.ListView):
         context['ref_delete'] = 'references:delete-genre'
         return context
 
-class CreateReferencesGenre(generic.CreateView):
+class CreateReferencesGenre(PermissionRequiredMixin, generic.CreateView):
     model = models.ReferencesGenre
     form_class = forms.ReferencesGenreForm
+    permission_required = 'orders.change_order'
     template_name = 'references/edit.html'
 
-class UpdateReferencesGenre(generic.UpdateView):
+class UpdateReferencesGenre(PermissionRequiredMixin, generic.UpdateView):
     model = models.ReferencesGenre
     form_class = forms.ReferencesGenreForm
+    permission_required = 'orders.change_order'
     template_name = 'references/edit.html'
 
-class DeleteReferencesGenre(generic.DeleteView):
+class DeleteReferencesGenre(PermissionRequiredMixin, generic.DeleteView):
     model = models.ReferencesGenre
+    permission_required = 'orders.change_order'
     template_name = 'references/delete.html'
     success_url = reverse_lazy('references:list-genre')
 
 #Currenсy
-class DetailReferencesCurrenсy(generic.DetailView):
+class DetailReferencesCurrenсy(PermissionRequiredMixin, generic.DetailView):
     model = models.ReferencesCurrenсy
+    permission_required = 'orders.change_order'
     template_name = 'references/detail.html'
 
-class ListReferencesCurrenсy(generic.ListView):
+class ListReferencesCurrenсy(PermissionRequiredMixin, generic.ListView):
     model = models.ReferencesCurrenсy
+    permission_required = 'orders.change_order'
     template_name = 'references/list.html'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -86,17 +98,20 @@ class ListReferencesCurrenсy(generic.ListView):
         context['ref_delete'] = 'references:delete-currenсy'
         return context
 
-class CreateReferencesCurrenсy(generic.CreateView):
+class CreateReferencesCurrenсy(PermissionRequiredMixin, generic.CreateView):
     model = models.ReferencesCurrenсy
     form_class = forms.ReferencesCurrenсyForm
+    permission_required = 'orders.change_order'
     template_name = 'references/edit.html'
 
-class UpdateReferencesCurrenсy(generic.UpdateView):
+class UpdateReferencesCurrenсy(PermissionRequiredMixin, generic.UpdateView):
     model = models.ReferencesCurrenсy
     form_class = forms.ReferencesCurrenсyForm
+    permission_required = 'orders.change_order'
     template_name = 'references/edit.html'
 
-class DeleteReferencesCurrenсy(generic.DeleteView):
+class DeleteReferencesCurrenсy(PermissionRequiredMixin, generic.DeleteView):
     model = models.ReferencesCurrenсy
+    permission_required = 'orders.change_order'
     template_name = 'references/delete.html'
     success_url = reverse_lazy('references:list-currenсy')

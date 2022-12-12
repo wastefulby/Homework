@@ -22,6 +22,7 @@ class GoodsBooks(models.Model):
     genre = models.ForeignKey(
         ReferencesGenre,
         on_delete = models.PROTECT,
+        related_name='genre',
         max_length = 40,
         default = 'null'
     )

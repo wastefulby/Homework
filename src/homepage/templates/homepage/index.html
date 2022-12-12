@@ -6,41 +6,80 @@
 
 {% block body %}
 <main>
-
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Выбор справочников...</h1>
-        <p class="lead text-muted">это временная надпись в этой части страницы</p>
+        <h1 class="fw-light">Главная страница...</h1>
+  {% if perms.orders.change_order %}
+        <p class="lead text-muted">Выбор справочников</p>
         <p>
             <a type="button" href="refs/list/author" class="btn btn-secondary my-2" role="button">Авторов</a>
             <a type="button" href="refs/list/genre" class="btn btn-secondary my-2" role="button">Жанров</a>
             <a type="button" href="refs/list/currenсy" class="btn btn-secondary my-2" role="button">Валют</a>
             <a type="button" href="goods/books" class="btn btn-secondary my-2" role="button">Книги</a>
         </p>
+  {% else %}
+        <p class="lead text-muted"></p>
+  {% endif %}
       </div>
     </div>
   </section>
+
+  <form action="/" method="GET">
+    <div class="container text-center">
+      <div class="input-group mb-3">
+        <div class="d-inline-flex"> 
+        <select class="form-select" name="genre_id">
+          <option selected disabled>Choose genre...</option>
+          {% for obj in genre_search %}
+          <option value="{{ obj.pk }}">{{ obj.name }}</option>    
+          {% endfor %}
+        </select>
+        <select class="form-select" name="author_id">
+          <option selected disabled>Choose author...</option>
+          {% for obj in author_search %}
+          <option value="{{ obj.pk }}">{{ obj.name }}</option>    
+          {% endfor %}
+        </select>
+      <button type="submit" class="btn btn-outline-secondary">Select</button>
+      </div>
+    </div>
+  </form>
 
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
         {% for obj in books %}
         <div class="col">
-          <div class="card" style="width: 18rem; height: ">
+          <div class="card" style="width: 18rem; height:">
             {% if obj.cover %}
             <p><img src="{{ obj.cover.url }}" class="card-img-top"></p>
             {% else %}
-            <p><img src="media/gray_cover.jpg" class="card-img-top"></p>
+            <p></p>
             {% endif %}
             <div class="card-body">
-              <p class="card-text">{{ obj.name }}</p>
+              <p class="card-text">{{ obj.name }} | {{ obj.author }}</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a type="button" href="goods/detail/books/{{obj.pk}}/" class="btn btn-sm btn-outline-secondary" role="button">View</a>
-                  <a type="button" href="goods/update/books/{{obj.pk}}/" class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
-                </div>
-                <small class="text-muted">{{ obj.author }}</small>
+                {% if perms.orders.change_order %}
+                  <div class="btn-group">
+                    <a type="button" href="goods/detail/books/{{obj.pk}}/" class="btn btn-sm btn-outline-secondary" role="button">View</a>
+                    <a type="button" href="goods/update/books/{{obj.pk}}/" class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
+                  </div>
+                {% else %}
+                  <div class="btn-group">
+                    <a type="button" href="refs/detail/author/{{obj.author.pk}}/" class="btn btn-sm btn-outline-secondary" role="button">author</a>
+                    <a type="button" href="goods/detail/books/{{obj.pk}}/" class="btn btn-sm btn-outline-secondary" role="button">View</a>
+                  </div>
+                {% endif %}
+                <form action="{% url 'orders:view-cart' %}" method="POST">
+                {% csrf_token %}
+                  <div class="input-group input-group-sm">                    
+                      <input type="number" class="form-control" name="quantity" style="width: 4rem" value="1" step="1" min="1">
+                      <input type="hidden" name="book_pk" value="{{ obj.pk }}">
+                      <button type="submit" class="btn btn-outline-secondary">Order</button>                                          
+                  </div>
+                </form>
+                <!-- <small class="text-muted">{{ obj.author }}</small> -->
               </div>
             </div>
 

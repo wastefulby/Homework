@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block body %}
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1>Order complete</h1>
+        <table class="table table-hover table-sm">
+            <thead><th colspan="2">pk</th><th>book</th><th>quantity</th><th>price</th><th>price_per_position</th><th>create_date</th><th>update_date</th></thead>
+            {% for book_in_cart in cart.book.all %}        
+                <tr>
+                    <td>{{ book_in_cart.pk }}</td>
+                    <td><img src="{{ book_in_cart.book.cover.url }}" width="32" height="48"></td>
+                    <td>{{ book_in_cart.book }}</td>
+                    <td>
+                        <form action="{% url 'orders:edit-cart' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group input-group-sm">                    
+                                <input type="number" name="change_quantity" class="form-control" style="width: 4rem" value="{{ book_in_cart.quantity }}">
+                                <input type="hidden" name="book_pk" value="{{ book_in_cart.pk }}">
+                                <input type="hidden" name="order_pk" value="{{ order_pk }}">
+                                <button type="submit" class="btn btn-outline-secondary">Change</button>                                          
+                            </div>
+                        </form>
+                    </td>
+                    <td>{{ book_in_cart.price }}</td>
+                    <td>{{ book_in_cart.price_per_position }}</td>
+                    <td>{{ book_in_cart.create_date }}</td>
+                    <td>{{ book_in_cart.update_date }}</td>
+                    <td>
+                        {% comment %} <form action="{% url 'orders:delete-cart' pk=book_in_cart.pk %}" method="post">
+                            {% csrf_token %} 
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                        </form> {% endcomment %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <h3><th colspan="3">{{ cart.book.count }}</th><th>{{ cart.total_quantity }}</th><th>Total price:</th><th colspan="4">{{ cart.total_price }}</th></h3>                      
+        </table>
+        <div class="row row-cols-2">
+            <form action="{% url 'orders:order-update' pk=order.pk %}" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-outline-success">Save</button>
+            </form> 
+        </div>        
+    </div>
+</main>
+{% endblock body %}
+
+{% block footer %}
+cart
+{% endblock footer %}
+    

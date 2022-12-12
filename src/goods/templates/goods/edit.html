@@ -11,7 +11,6 @@
     <div class="container">
         <div class="row row-cols-2">
             <form action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
                 {{ form|crispy }}
                 <div class="btn-group">
                 <input class="btn btn-outline-success" type="submit" value="Сохранить"/><input class="btn btn-outline-dark" onclick="history.back()" type="button" value="Назад"/>
@@ -36,7 +35,6 @@
                 <option selected value="{{object.author}}">{{ object.author }}</option>
                 {% for obj in refs_author %}
                 <option value="{{object.pk}}">{{ obj.name }}</option>
-                {% comment %} {{ object.pk=obj.pk }}          
                 {% endfor %}                
             </select>
         </p>

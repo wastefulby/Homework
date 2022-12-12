@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block body %}
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1>Order list</h1>
+        <table class="table table-hover table-sm">
+            <thead><th>pk</th><th>status</th><th>total_price</th><th>phone</th><th>name</th><th>adress</th><th>email</th><th>info</th><th>create_date</th><th>update_date</th></thead>
+            {% for order in orders %}        
+                <tr onclick="location.href='{% url 'orders:order-update' pk=order.pk %}'">
+                    <td>{{ order.pk }}</td>
+                    <td style="background-color: #62a3d0">{{ order.status }}</td>
+                    <td>{{ order.cart.total_price }}</td>
+                    <td>{{ order.phone }}</td>
+                    <td>{{ order.name }}</td>
+                    <td>{{ order.adress }}</td>
+                    <td>{{ order.email }}</td>
+                    <td>{{ order.info }}</td>
+                    <td>{{ order.create_date }}</td>
+                    <td>{{ order.update_date }}</td>                    
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock body %}
+
+{% block footer %}
+cart
+{% endblock footer %}
+    

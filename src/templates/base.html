@@ -27,22 +27,35 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'orders:user-orders' %}">List user orders</a>
           </li>
+          {% if perms.orders.change_order %}
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link active" href="{% url 'orders:orders-list' %}">List orders</a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input type="search" class="form-control me-2" placeholder="Search..." aria-label="Search">
+        <!-- Basket -->
+        <a class="navbar-brand position-relative" href="{% url 'orders:view-cart' %}">
+          <img src="/media/basket_icon.svg" alt="Bootstrap" width="32" height="32">
+          <span class="position-absolute top-32 start-100 translate-middle badge rounded-pill text-bg-danger">{{ cart.total_quantity }}</span>
+        </a>
+        <!-- Search --> 
+        <form class="d-flex" action="/" method="GET" role="search">       
+          <input type="search" name="q_search" class="form-control me-2" placeholder="Search..." aria-label="Search">
         </form>
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'logout' %}">{{ user.username }} | Logout</a>
+        {% else %}
+        <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+        {% endif %}
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#Login">Login</button>
+        {% comment %} <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#Login">Login</button> {% endcomment %}
         <!-- Modal -->
-        <div class="modal fade" id="Login" tabindex="-1">
+        {% comment %} <div class="modal fade" id="Login" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -59,7 +72,7 @@
               </form>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
   </nav>
